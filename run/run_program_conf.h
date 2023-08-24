@@ -242,6 +242,15 @@ int syscall_max_cnt_list_default[][2] = {
 
 	{__NR_restart_syscall, -1},
 
+	{__NR_newfstatat    , -1},
+	{__NR_pread64       , -1},
+	{__NR_set_tid_address, -1},
+	{__NR_set_robust_list, -1},
+	{__NR_rseq          , -1},
+	{__NR_prlimit64     , -1},
+	{__NR_getrandom     , -1},
+	{__NR_futex         , -1},
+
 	{-1                 , -1}
 };
 

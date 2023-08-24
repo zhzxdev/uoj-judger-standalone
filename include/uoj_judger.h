@@ -615,6 +615,7 @@ struct RunProgramConfig {
 			<< " " << "--ol=" << limit.output
 			<< " " << "--type=" << type
 			<< " " << "--work-path=" << work_path
+			<< " " << "--unsafe"
 			/*<< " " << "--show-trace-details"*/;
 		for (vector<string>::const_iterator it = readable_file_names.begin(); it != readable_file_names.end(); it++) {
 			sout << " " << "--add-readable=" << escapeshellarg(*it);
@@ -680,6 +681,7 @@ RunResult vrun_program(
 		<< " " << "--tl=" << limit.time
 		<< " " << "--ml=" << limit.memory
 		<< " " << "--ol=" << limit.output
+		<< " " << "--unsafe"
 		/*<< " " << "--show-trace-details"*/;
 	for (vector<string>::const_iterator it = rest.begin(); it != rest.end(); it++) {
 		sout << " " << escapeshellarg(*it);
@@ -776,6 +778,7 @@ RunCheckerResult run_checker(
 
 RunCompilerResult run_compiler(const char *path, ...) {
 	vector<string> argv;
+	argv.push_back("--unsafe");
 	argv.push_back("--type=compiler");
 	argv.push_back(string("--work-path=") + path);
 	va_list vl;
@@ -1532,14 +1535,14 @@ int scale_score(int scr100, int full) {
 /*======================= conf init =================== */
 
 void main_judger_init(int argc, char **argv)  {
-	if (argc != 2) {
+	if (argc != 3) {
 		exit(1);
 	}
 	main_path = UOJ_WORK_PATH;
-	work_path = argv[0];
-	result_path = "./result";
+	work_path = argv[1];
+	result_path = main_path + "/result";
 	load_config(work_path + "/submission.conf");
-	data_path = argv[1];
+	data_path = argv[2];
 	load_config(data_path + "/problem.conf");
 
 	executef("cp %s/require/* %s 2>/dev/null", data_path.c_str(), work_path.c_str());
