@@ -486,29 +486,36 @@ void add_subtask_info(const int &num, const int &scr, const string &info, const 
 }
 void end_judge_ok() {
 	FILE *fres = fopen((result_path + "/result.txt").c_str(), "w");
-	fprintf(fres, "score %d\n", tot_score);
-	fprintf(fres, "time %d\n", tot_time);
-	fprintf(fres, "memory %d\n", max_memory);
-	fprintf(fres, "details\n");
-	fprintf(fres, "<tests>\n");
+	fprintf(fres, "<result>\n");
+	fprintf(fres, "<score>%d</score>\n", tot_score);
+	fprintf(fres, "<time>%d</time>\n", tot_time);
+	fprintf(fres, "<memory>%d</memory>\n", max_memory);
+	fprintf(fres, "<details>\n");
 	fprintf(fres, "%s", details_out.str().c_str());
-	fprintf(fres, "</tests>\n");
+	fprintf(fres, "</details>\n");
+	fprintf(fres, "</result>\n");
 	fclose(fres);
 	exit(0);
 }
 void end_judge_judgement_failed(const string &info) {
 	FILE *fres = fopen((result_path + "/result.txt").c_str(), "w");
-	fprintf(fres, "error Judgement Failed\n");
-	fprintf(fres, "details\n");
+	fprintf(fres, "<result>\n");
+	fprintf(fres, "<error>Judgement Failed</error>\n");
+	fprintf(fres, "<details>\n");
 	fprintf(fres, "<error>%s</error>\n", htmlspecialchars(info).c_str());
+	fprintf(fres, "</details>\n");
+	fprintf(fres, "</result>\n");
 	fclose(fres);
 	exit(1);
 }
 void end_judge_compile_error(const RunCompilerResult &res) {
 	FILE *fres = fopen((result_path + "/result.txt").c_str(), "w");
-	fprintf(fres, "error Compile Error\n");
-	fprintf(fres, "details\n");
+	fprintf(fres, "<result>\n");
+	fprintf(fres, "<error>Compile Error</error>\n");
+	fprintf(fres, "<details>\n");
 	fprintf(fres, "<error>%s</error>\n", htmlspecialchars(res.info).c_str());
+	fprintf(fres, "</details>\n");
+	fprintf(fres, "</result>\n");
 	fclose(fres);
 	exit(0);
 }
