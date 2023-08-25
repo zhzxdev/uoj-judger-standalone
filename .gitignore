@@ -1,0 +1,7 @@
+**/*
+!**/*.*
+!Makefile
+.vscode/
+work/
+result/
+data/

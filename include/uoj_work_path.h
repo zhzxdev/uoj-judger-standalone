@@ -1,0 +1,1 @@
+#define UOJ_WORK_PATH "/opt/uoj_judger"
