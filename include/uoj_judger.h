@@ -638,7 +638,7 @@ struct RunProgramConfig {
          << "--ol=" << limit.output << " "
          << "--type=" << type << " "
          << "--work-path=" << work_path << " "
-         << "--unsafe"
+        //  << "--unsafe"
         /*<< " " << "--show-trace-details"*/;
     for (vector<string>::const_iterator it = readable_file_names.begin();
          it != readable_file_names.end(); it++) {
@@ -711,7 +711,7 @@ RunResult vrun_program(const char *run_program_result_file_name,
        << "--tl=" << limit.time << " "
        << "--ml=" << limit.memory << " "
        << "--ol=" << limit.output << " "
-       << "--unsafe"
+      //  << "--unsafe"
       /*<< " " << "--show-trace-details"*/;
   for (vector<string>::const_iterator it = rest.begin(); it != rest.end();
        it++) {
