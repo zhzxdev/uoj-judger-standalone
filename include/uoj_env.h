@@ -35,4 +35,3 @@
 #define RS_HK_SPJ_OLE (successed_hack + RS_SPJ_OLE)
 #define RS_HK_SPJ_DGS (successed_hack + RS_SPJ_DGS)
 #define RS_HK_SPJ_JGF (successed_hack + RS_SPJ_JGF)
-
