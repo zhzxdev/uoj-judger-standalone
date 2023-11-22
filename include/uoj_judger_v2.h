@@ -2385,11 +2385,11 @@ class SubmitAnswerJudger : public Judger {
 
 void main_judger_init(int argc, char **argv) {
   try {
-    main_path = fs::read_symlink("/proc/self/exe").parent_path();
-    work_path = fs::current_path() / "work";
-    result_path = fs::current_path() / "result";
+    main_path = "/opt/uoj_judger";
+    work_path = argv[1];
+    result_path = main_path / "/result";
     load_config(work_path / "submission.conf");
-    data_path = main_path / "data" / conf_str("problem_id");
+    data_path = argv[2];
     load_config(data_path / "problem.conf");
 
     if (fs::is_directory(data_path / "require")) {
