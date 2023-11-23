@@ -12,6 +12,7 @@
 #include <ctime>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -677,37 +678,40 @@ void add_subtask_info(const int &num, const int &scr, const string &info,
 }
 [[noreturn]] void end_judge_ok() {
   ofstream fres(result_path / "result.txt");
+  fres << "<result>\n";
   if (uoj_errcode.empty()) {
-    fres << "score " << tot_score << "\n";
-    fres << "time " << tot_time << "\n";
-    fres << "memory " << max_memory << "\n";
+    fres << "<score>" << tot_score << "</score>\n";
+    fres << "<time>" << tot_time << "</time>\n";
+    fres << "<memory>" << max_memory << "</memory>\n";
   } else {
-    fres << "error Judgment Failed\n";
+    fres << "<error>Judgment Failed</error>\n";
   }
-  fres << "details\n";
-  if (uoj_errcode.empty()) {
-    fres << "<tests>\n";
-  } else {
-    fres << "<tests errcode=\"" << htmlspecialchars(uoj_errcode) << "\">\n";
-  }
+  fres << "<details>\n";
   fres << details_out.str();
-  fres << "</tests>\n";
+  fres << "</details>\n";
+  fres << "</result>\n";
   fres.close();
   exit(uoj_errcode.empty() && fres ? 0 : 1);
 }
 [[noreturn]] void end_judge_judgment_failed(const string &info) {
   ofstream fres(result_path / "result.txt");
-  fres << "error Judgment Failed\n";
-  fres << "details\n";
+  fres << "<result>\n";
+  fres << "<error>Judgment Failed</error>\n";
+  fres << "<details>\n";
   fres << "<error>" << htmlspecialchars(info) << "</error>\n";
+  fres << "</details>\n";
+  fres << "</result>\n";
   fres.close();
   exit(0);
 }
 [[noreturn]] void end_judge_compile_error(const run_compiler_result &res) {
   ofstream fres(result_path / "result.txt");
-  fres << "error Compile Error\n";
-  fres << "details\n";
+  fres << "<result>\n";
+  fres << "<error>Compile Error</error>\n";
+  fres << "<details>\n";
   fres << "<error>" << htmlspecialchars(res.info) << "</error>\n";
+  fres << "</details>\n";
+  fres << "</result>\n";
   fres.close();
   exit(0);
 }
@@ -2385,10 +2389,10 @@ class SubmitAnswerJudger : public Judger {
 void main_judger_init(int argc, char **argv) {
   try {
     main_path = fs::read_symlink("/proc/self/exe").parent_path();
-    work_path = fs::current_path() / "work";
-    result_path = fs::current_path() / "result";
+    work_path = argv[1];
+    result_path = main_path / "result";
     load_config(work_path / "submission.conf");
-    data_path = main_path / "data" / conf_str("problem_id");
+    data_path = argv[2];
     load_config(data_path / "problem.conf");
 
     if (fs::is_directory(data_path / "require")) {

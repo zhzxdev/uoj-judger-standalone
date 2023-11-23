@@ -332,9 +332,6 @@ std::map<std::string, std::vector<std::string>> soft_ban_file_name_list = {
      {
          "/dev/tty",
 
-         // for python 3.9
-         "/usr/lib/python39.zip",
-
          // for java and javac...
          "/etc/nsswitch.conf",
          "/etc/passwd",
@@ -405,12 +402,12 @@ std::map<std::string, std::vector<std::string>> readable_file_name_list = {
 
     {"python3",
      {
-         "/etc/python3.9/",
-         "/usr/bin/python3.9",
-         "/usr/lib/python3.9/",
+         "/etc/python3.8/",
+         "/usr/bin/python3.8",
+         "/usr/lib/python3.8/",
          "/usr/lib/python3/dist-packages/",
-         "/usr/bin/lib/python3.9/",
-         "/usr/local/lib/python3.9/",
+         "/usr/bin/lib/python3.8/",
+         "/usr/local/lib/python3.8/",
          "/usr/bin/pyvenv.cfg",
          "/usr/pyvenv.cfg",
          "/usr/bin/Modules/",
@@ -451,7 +448,7 @@ std::map<std::string, std::vector<std::string>> readable_file_name_list = {
          "/proc/",
          "/etc/timezone",
          "/etc/python2.7/",
-         "/etc/python3.9/",
+         "/etc/python3.8/",
          "/etc/fpc-3.0.4.cfg",
          "/etc/java-11-openjdk/",
          "/etc/java-17-openjdk/",

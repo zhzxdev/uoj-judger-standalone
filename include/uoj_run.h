@@ -11,10 +11,10 @@
 #include <string>
 #include <vector>
 
-#define UOJ_GCC "/usr/bin/gcc-10"
-#define UOJ_GPLUSPLUS "/usr/bin/g++-10"
+#define UOJ_GCC "/usr/bin/gcc-9"
+#define UOJ_GPLUSPLUS "/usr/bin/g++-9"
 #define UOJ_PYTHON2_7 "/usr/bin/python2.7"
-#define UOJ_PYTHON3 "/usr/bin/python3.9"
+#define UOJ_PYTHON3 "/usr/bin/python3.8"
 #define UOJ_FPC "/usr/bin/fpc"
 #define UOJ_JDK8 "jdk1.8.0_202"
 #define UOJ_OPEN_JDK11 "/usr/lib/jvm/java-11-openjdk-amd64"
