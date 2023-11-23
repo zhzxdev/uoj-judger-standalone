@@ -192,7 +192,7 @@ inline std::string rstype_str(RS_TYPE id) {
 
 inline std::string get_type_from_lang(std::string lang) {
   lang = upgraded_lang(lang);
-  if (lang == "Python2.7") {
+  if (lang == "Python2" || lang == "Python2.7") {
     return "python2.7";
   } else if (lang == "Python3") {
     return "python3";
