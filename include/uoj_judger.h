@@ -906,13 +906,14 @@ void end_judge_ok() {
   if (!fres) {
     exit(1);
   }
-  fres << "score " << tot_score << "\n";
-  fres << "time " << tot_time << "\n";
-  fres << "memory " << max_memory << "\n";
-  fres << "details\n";
-  fres << "<tests>\n";
+  fres << "<result>\n";
+  fres << "<score>" << tot_score << "</score>\n";
+  fres << "<time>" << tot_time << "</time>\n";
+  fres << "<memory>" << max_memory << "</memory>\n";
+  fres << "<details>\n";
   fres << details_out.str();
-  fres << "</tests>\n";
+  fres << "</details>\n";
+  fres << "</result>\n";
   fres.close();
   exit(0);
 }
@@ -921,9 +922,12 @@ void end_judge_judgement_failed(const string &info) {
   if (!fres) {
     exit(1);
   }
-  fres << "error Judgment Failed\n";
-  fres << "details\n";
+  fres << "<result>\n";
+  fres << "<error>Judgment Failed</error>\n";
+  fres << "<details>\n";
   fres << "<error>" << htmlspecialchars(info) << "</error>\n";
+  fres << "</details>\n";
+  fres << "</result>\n";
   fres.close();
   exit(0);
 }
@@ -932,9 +936,12 @@ void end_judge_compile_error(const RunCompilerResult &res) {
   if (!fres) {
     exit(1);
   }
-  fres << "error Compile Error\n";
-  fres << "details\n";
+  fres << "<result>\n";
+  fres << "<error>Compile Error</error>\n";
+  fres << "<details>\n";
   fres << "<error>" << htmlspecialchars(res.info) << "</error>\n";
+  fres << "</details>\n";
+  fres << "</result>\n";
   fres.close();
   exit(0);
 }
