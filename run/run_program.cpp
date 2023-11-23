@@ -143,7 +143,7 @@ void parse_args(int argc, char **argv) {
   run_program_config.work_path = "";
   run_program_config.result_file_name = "stdout";
   run_program_config.type = "default";
-  run_program_config.unsafe = false;
+  run_program_config.unsafe = true;
   run_program_config.need_show_trace_details = false;
   run_program_config.allow_proc = false;
 
