@@ -458,7 +458,7 @@ int compile(const compile_config &conf) {
     return compile_cpp(conf, "c++20");
   } else if (lang == "C") {
     return compile_c(conf);
-  } else if (lang == "Python2.7") {
+  } else if (lang == "Python2" || lang == "Python2.7") {
     return compile_python2_7(conf);
   } else if (lang == "Python3") {
     return compile_python3(conf);
